@@ -23,7 +23,7 @@ class CreatePemiliksTable extends Migration
             $table->string('phone_number')->unique();
             $table->string('other_info')->nullable();
             $table->string('pict_1');
-            $table->string('pict_2');
+            $table->string('ktp');
             $table->string('username')->unique();
             $table->string('password');
             $table->integer('status'); //0 = Registered; 1 = Accepted; 2 = Rejected;
