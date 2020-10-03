@@ -29,16 +29,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a id="dropdownDistrict" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">District</a>
-                            <ul aria-labelledby="dropdownDistrict" class="dropdown-menu border-0 shadow">
-                                <li><a href="" class="dropdown-item">Some action </a></li>
-                                <li><a href="" class="dropdown-item">Some other action</a></li>
-                            </ul>
-                        </li>
-                    </ul>
 
                     <!-- SEARCH FORM -->
                     <form class="form-inline ml-0 ml-md-3">

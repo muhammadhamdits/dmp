@@ -4,12 +4,10 @@
     <link rel="stylesheet" href="{{ url('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
     <style>
         .dataTables_length,.dataTables_filter {
-            /* margin-left: 10px; */
             float: right;
         }
         div.dt-buttons {
             float: left;
-            /* margin-left:10px; */
         }
     </style>
 @endsection
@@ -17,7 +15,7 @@
 @section('content')
     <div class="container">
         <section class="content-header">
-
+            @include('flash-message')
         </section>
         <section class="content">
             <div class="container">
@@ -89,13 +87,13 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Item Name</label>
                             <div class="col-sm-9">
-                                <input type="text" name="name" class="form-control" placeholder="Item Name">
+                                <input type="text" name="name" class="form-control" placeholder="Item Name" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="type_id" class="col-sm-3 col-form-label">Type</label>
                             <div class="col-sm-9">
-                                <select name="type_id" class="form-control">
+                                <select name="type_id" class="form-control" required>
                                     @foreach($types as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
@@ -105,7 +103,7 @@
                         <div class="form-group row">
                             <label for="unit_id" class="col-sm-3 col-form-label">Unit</label>
                             <div class="col-sm-9">
-                                <select name="unit_id" class="form-control">
+                                <select name="unit_id" class="form-control" required>
                                     @foreach($units as $unit)
                                     <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                     @endforeach
@@ -115,19 +113,19 @@
                         <div class="form-group row">
                             <label for="price" class="col-sm-3 col-form-label">Price per Unit</label>
                             <div class="col-sm-9">
-                                <input type="text" name="price" class="form-control" placeholder="Price per Unit">
+                                <input type="text" name="price" class="form-control" placeholder="Price per Unit" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="stock" class="col-sm-3 col-form-label">Stock</label>
                             <div class="col-sm-9">
-                                <input type="number" name="stock" class="form-control" placeholder="Stock">
+                                <input type="number" name="stock" class="form-control" placeholder="Stock" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="foto" class="col-sm-3 col-form-label">Picture</label>
                             <div class="col-sm-9">
-                                <input type="file" name="foto" class="form-control">
+                                <input type="file" name="foto" class="form-control" required>
                             </div>
                         </div>
                     </div>

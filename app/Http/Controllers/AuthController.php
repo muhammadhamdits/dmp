@@ -76,15 +76,20 @@ class AuthController extends Controller
             'owner_address' => 'required',
             'email'         => 'required',
             'phone_number'  => 'required',
+            'pict_1'        => 'required',
+            'ktp'           => 'required',
             'username'      => 'required',
             'password'      => 'required|confirmed'
         ]);
 
         $file = $request->file('pict_1');
+        $file2 = $request->file('ktp');
         $nama_file = time()."_".$file->getClientOriginalName();
-
+        $nama_file2 = time()."_".$file2->getClientOriginalName();
         $tujuan_upload = 'img/shop';
+        $tujuan_upload2 = 'img/shop';
 		$file->move($tujuan_upload,$nama_file);
+		$file2->move($tujuan_upload2,$nama_file2);
 
         Pemilik::create([
             'name'          => $request->name,
@@ -95,11 +100,13 @@ class AuthController extends Controller
             'phone_number'  => $request->phone_number,
             'other_info'    => $request->other_info,
             'pict_1'        => $nama_file,
-            'pict_2'        => "",
+            'ktp'           => $nama_file2,
             'username'      => $request->username,
             'password'      => bcrypt($request->password),
             'status'        => 0
         ]);
+
+        return back()->with('success','Registered successfully!');
     }
     
     public function getUserRegister(){

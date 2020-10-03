@@ -16,6 +16,7 @@
             <div class="col-md-9">
                 <div class="card card-solid mt-4">
                     <div class="card-body pb-0">
+                        @include('flash-message')   
                         <div class="row d-flex align-items-stretch">
                             <div class="col-md-3 d-flex align-items-stretch">
                                 <div class="card" style="width: 100%">

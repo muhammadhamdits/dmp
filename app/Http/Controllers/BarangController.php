@@ -34,7 +34,7 @@ class BarangController extends Controller
             'type_id'       => $request->type_id,
             'foto'          => $nama_file
         ]);
-        return redirect(route('owner.index'));
+        return redirect(route('owner.index'))->with('success','Item Added successfully!');;
     }
 
     public function show(Barang $barang)

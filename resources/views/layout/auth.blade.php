@@ -5,7 +5,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-10 col-sm-8 col-md-6">
             <div class="register-logo">
-                <a href="{{ url('/') }}"><b>Marketplace</b></a>
+                <a href="{{ url('/') }}"><b>Kadai Kito</b></a>
             </div>
     
             <div class="card">
