@@ -28,13 +28,16 @@ Route::get('admin/accepted', 'AdminController@accepted')->name('admin.acc');
 Route::get('admin/rejected', 'AdminController@rejected')->name('admin.rej');
 
 Route::get('owner/item/{id}', 'PemilikController@itemDetail')->name('owner.itemDetail');
+Route::get('owner/orders', 'PemilikController@orders')->name('owner.orders');
+Route::get('owner/order/{id}', 'PemilikController@order')->name('owner.order');
+Route::post('owner/order/{id}', 'PemilikController@orderProcess')->name('owner.orderProcess');
 
 Route::get('store/{id}', 'HomeController@storeDetail')->name('user.storeDetail');
 Route::get('store/item/{id}', 'HomeController@itemDetail')->name('user.itemDetail');
 
 Route::get('cart', 'TransaksiController@cartDetail')->name('cart.detail');
 Route::post('cart', 'TransaksiController@cartAdd')->name('cart.add');
-Route::post('checkout', 'TransaksiController@checkout')->name('cart.checkout');
+Route::post('checkout/{id}', 'TransaksiController@checkout')->name('cart.checkout');
 
 Route::resource('user', 'UserController');
 Route::resource('admin', 'AdminController');

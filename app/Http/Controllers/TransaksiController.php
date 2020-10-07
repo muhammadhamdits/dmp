@@ -66,19 +66,19 @@ class TransaksiController extends Controller
     }
 
     public function cartDetail(){
-        $cart = Transaksi::where('status', 0)
+        $carts = Transaksi::where('status', 0)
                     ->where('user_id', auth()->guard('web')->user()->id)
-                    ->first();
+                    ->get();
         
-        return view('user.cart', compact('cart'));
+        return view('user.cart', compact('carts'));
     }
 
-    public function checkout(){
-        $cart = Transaksi::where('status', 0)
-                    ->where('user_id', auth()->guard('web')->user()->id)
-                    ->first();
-        // $cart->update([
-        //     'status' => 
-        // ]);
+    public function checkout($id){
+        $cart = Transaksi::findOrFail($id);
+        $cart->update([
+            'tanggal'=> date('Y-m-d H:i:s'),
+            'status' => 1
+        ]);
+        return back()->with('success', 'Your order has been sent to seller!');
     }
 }

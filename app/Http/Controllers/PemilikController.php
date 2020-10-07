@@ -6,6 +6,7 @@ use App\Pemilik;
 use App\Type;
 use App\Unit;
 use App\Barang;
+use App\Transaksi;
 use Illuminate\Http\Request;
 
 class PemilikController extends Controller
@@ -55,5 +56,32 @@ class PemilikController extends Controller
     public function itemDetail($id){
         $item = Barang::findOrFail($id);
         return view('owner.itemDetail', compact('item'));
+    }
+
+    public function orders(){
+        $orders = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
+                    ->where('status', 1)
+                    ->get();
+        return view('owner.orders', compact('orders'));
+    }
+
+    public function order($id){
+        $order = Transaksi::findOrFail($id);
+        return view('owner.order', compact('order'));
+    }
+
+    public function orderProcess(Request $request, $id){
+        $order = Transaksi::findOrFail($id);
+        if(isset($request->proses)){
+            $order->update([
+                'status' => 2
+            ]);
+            return back()->with('success','Order are going to be processed!');
+        }elseif(isset($request->refuse)){
+            $order->update([
+                'status' => 4
+                ]);
+            return back()->with('danger','Order Refused!');
+        }
     }
 }

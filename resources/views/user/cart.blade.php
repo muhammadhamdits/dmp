@@ -14,64 +14,52 @@
 
         <section class="content">
             <div class="container">
+                @include('flash-message')
+                @foreach($carts as $cart)
                 <div class="card card-solid">
                     <div class="card-body pb-0">
-                        <div class="row">
-                            <div class="col-md-7">
+                        <h4>{{ $cart->shop->shop_name }}</h4>
+                        <table width="100%" class="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Pict</th>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach($cart->detail as $detail)
-                                    <div class="row">
-                                        <div class="col-md-4 d-flex align-items-stretch">
-                                            <div class="card" style="width: 100%">
-                                                <div class="gambar" style="background-image: url('/img/item/{{ $detail->barang->foto }}')"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label for="">{{ $detail->barang->nama }}</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="">{{ $detail->barang->harga }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <div class="form-group">
-                                                        <input type="number" class="form-control" value="{{   $detail->jumlah }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="form-group">
-                                                        <label for="">{{ $detail->barang->unit->name }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><img src="/img/item/{{ $detail->barang->foto }}" alt="" width="75" height="75"></td>
+                                    <td>{{ $detail->barang->nama }}</td>
+                                    <td>{{ $detail->jumlah }}</td>
+                                    <td class="text-right">{{ $detail->barang->harga }}</td>
+                                    <td class="text-right">{{ $detail->jumlah * $detail->barang->harga }}</td>
+                                </tr>
                                 @endforeach
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Estimate Total</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Harga</label>
-                                </div>
-                                <form action="{{ route('cart.checkout') }}" method="post">
-                                    @csrf
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Checkout</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <th colspan="5" class="text-right">Summary</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                                <tr>
+                                    <form action="{{ route('cart.checkout', $cart->id) }}" method="post">
+                                        @csrf
+                                        <td class="text-right" colspan="6">
+                                            <button type="submit" class="btn btn-primary">Checkout</button>
+                                        </td>  
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                @endforeach
             </div>
         </section>
     </div>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Barang;
+use App\TransaksiBarang;
 use App\Pemilik;
+use DB;
 
 class HomeController extends Controller
 {
@@ -20,8 +22,16 @@ class HomeController extends Controller
         // }elseif(auth()->guard('owner')->check()){
         //     return view('owner.index');
         // }else{
-            $stores = Pemilik::where('status', 1)->get();
-            return view('user.index', compact('stores'));
+            $stores     = Pemilik::where('status', 1)->get();
+            $populars   = TransaksiBarang::select(DB::raw("barang_id, COUNT('barang_id') AS hitung"))
+                            ->groupBy('barang_id')
+                            ->orderBy('hitung', 'DESC')
+                            ->take(4)
+                            ->get();
+            $news       = Barang::orderBy('created_at', 'ASC')
+                            ->take(4)
+                            ->get();
+            return view('user.index', compact('stores', 'populars', 'news'));
         // }
     }
 
