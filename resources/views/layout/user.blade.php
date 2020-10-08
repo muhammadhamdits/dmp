@@ -72,6 +72,40 @@
                             </a>
                         </div>
                     </li>
+                    @elseif(auth()->guard('owner')->user())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="fas fa-user-circle mr-2"></i> 
+                            {{ auth()->guard('owner')->user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu dropdown-menu-right">
+                            <a href="{{ route('owner.index') }}" class="dropdown-item">
+                                <i class="fas fa-user mr-2"></i> 
+                                Owner Page
+                            </a>
+                            <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt mr-2"></i> 
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                    @elseif(auth()->guard('admin')->user())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="fas fa-user-circle mr-2"></i> 
+                            {{ auth()->guard('admin')->user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu dropdown-menu-right">
+                            <a href="{{ route('admin.index') }}" class="dropdown-item">
+                                <i class="fas fa-user mr-2"></i> 
+                                Admin Page
+                            </a>
+                            <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt mr-2"></i> 
+                                Logout
+                            </a>
+                        </div>
+                    </li>
                     @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('auth.getLogin') }}">
