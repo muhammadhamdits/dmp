@@ -21,7 +21,7 @@
                 <a href="{{ url('/') }}" class="navbar-brand">
                     <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                         style="opacity: .8">
-                    <span class="brand-text font-weight-light">MARKETPLACE</span>
+                    <span class="brand-text font-weight-light">Kadai Kito</span>
                 </a>
             
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +105,7 @@
             <div class="float-right d-none d-sm-inline">
                 Anything you want
             </div>
-            <strong>Copyright &copy; 2020 <a href="">Hamdio</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020 <a href="">LEA SI UNAND</a>.</strong> All rights reserved.
         </footer>
     </div>
 @endsection
