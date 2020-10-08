@@ -22,7 +22,7 @@ class BarangController extends Controller
         $file = $request->file('foto');
         $nama_file = time()."_".$file->getClientOriginalName();
 
-        $tujuan_upload = 'img/item';
+        $tujuan_upload = 'img/item/';
 		$file->move($tujuan_upload,$nama_file);
 
         Barang::create([
@@ -52,7 +52,7 @@ class BarangController extends Controller
         if($request->file('foto') != null){
             $file = $request->file('foto');
             $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = 'img/item';
+            $tujuan_upload = 'img/item/';
             $file->move($tujuan_upload,$nama_file);
             unlink(public_path($tujuan_upload.'/'.Barang::findOrFail($id)->foto));
         }else{
@@ -71,7 +71,7 @@ class BarangController extends Controller
 
     public function destroy($id)
     {
-        $tujuan_upload = 'img/item';
+        $tujuan_upload = 'img/item/';
         unlink(public_path($tujuan_upload.'/'.Barang::findOrFail($id)->foto));
         Barang::findOrFail($id)->delete();
         return redirect(route('owner.index'));
