@@ -130,5 +130,6 @@ class AuthController extends Controller
             'username'      => $request->username,
             'password'      => bcrypt($request->password)
         ]);
+        return back()->with('success','Registered successfully!');
     }
 }
