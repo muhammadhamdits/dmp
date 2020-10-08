@@ -19,7 +19,7 @@
                     <div class="card-body pb-0">
                         <div class="row d-flex align-items-stretch">
                             @foreach($populars as $popular)
-                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+                            <div class="col-12 col-sm-6 col-md-2 d-flex align-items-stretch">
                                 <div class="card" style="width: 100%">
                                     <div class="gambar" style="background-image: url('/img/item/{{ $popular->barang->foto }}')"></div>
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
@@ -61,7 +61,7 @@
                     <div class="card-body pb-0">
                         <div class="row d-flex align-items-stretch">
                             @foreach($news as $item)
-                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+                            <div class="col-12 col-sm-6 col-md-2 d-flex align-items-stretch">
                                 <div class="card" style="width: 100%">
                                     <div class="gambar" style="background-image: url('/img/item/{{ $item->foto }}')"></div>
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
@@ -103,7 +103,7 @@
                     <div class="card-body pb-0">
                         <div class="row d-flex align-items-stretch">
                             @foreach($stores as $store)
-                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+                            <div class="col-12 col-sm-6 col-md-2 d-flex align-items-stretch">
                                 <div class="card" style="width: 100%">
                                     <div class="gambar" style="background-image: url('/img/shop/{{ $store->pict_1 }}')"></div>
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
