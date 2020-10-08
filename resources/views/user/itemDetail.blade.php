@@ -33,6 +33,7 @@
                                     <div class="form-group">
                                         <h4>Rp {{ $item->harga }}</h4>
                                     </div>
+                                    @if(!auth()->guard('admin')->user() && !auth()->guard('owner')->user())
                                     <div class="form-group row">
                                         <div class="col-sm-2">
                                             <input type="number" class="form-control" name="jumlah" value="1">
@@ -42,8 +43,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        @if(auth()->guard('web')->user())
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                                        @else
+                                        <a href="{{ route('auth.login') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                                        @endif
                                     </div>
+                                    @endif
                                 </form>
                             </div>
                         </div>
