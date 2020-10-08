@@ -108,6 +108,8 @@
                                     <div class="gambar" style="background-image: url('/img/shop/{{ $store->pict_1 }}')"></div>
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
                                         <a href="{{ route('user.storeDetail', $store->id) }}"><b>{{ $store->shop_name }}</b></a>
+                                        <br>
+                                        {{ $store->shop_address }}
                                     </div>
                                 </div>
                             </div>

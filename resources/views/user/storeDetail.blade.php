@@ -9,7 +9,9 @@
                         <div class="card" style="width: 100%">
                             <div class="gambar" style="background-image: url('/img/shop/{{ $store->pict_1 }}')"></div>
                         </div>
-                        {{ $store->shop_name }}
+                        <h4><b>{{ $store->shop_name }}</b></h4>
+                        <h5>{{ $store->shop_address }}</h5>
+                        <h6>{{ $store->other_info }}</h6>
                     </div>
                 </div>
             </div>
