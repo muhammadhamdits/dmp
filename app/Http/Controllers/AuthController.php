@@ -130,10 +130,5 @@ class AuthController extends Controller
             'username'      => $request->username,
             'password'      => bcrypt($request->password)
         ]);
-        
-        Transaksi::create([
-            'user_id'   => $user->id,
-            'status'    => 0
-        ]);
     }
 }
