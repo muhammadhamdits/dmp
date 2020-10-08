@@ -23,16 +23,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $order)
+                                @foreach($data as $order)
                                 <tr>
                                     <td><a href="{{ route('owner.order', $order->id) }}">{{ $order->id }}</a></td>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->tanggal }}</td>
                                     <td>
-                                        @if($order->status == 1)
-                                            Need Process
+                                        @if($order->status == 3)
+                                            Done
                                         @else
-                                            Processed
+                                            Refused
                                         @endif
                                     </td>
                                 </tr>

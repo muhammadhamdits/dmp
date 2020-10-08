@@ -31,6 +31,7 @@ Route::get('owner/item/{id}', 'PemilikController@itemDetail')->name('owner.itemD
 Route::get('owner/orders', 'PemilikController@orders')->name('owner.orders');
 Route::get('owner/order/{id}', 'PemilikController@order')->name('owner.order');
 Route::post('owner/order/{id}', 'PemilikController@orderProcess')->name('owner.orderProcess');
+Route::get('owner/history', 'PemilikController@history')->name('owner.history');
 
 Route::get('store/{id}', 'HomeController@storeDetail')->name('user.storeDetail');
 Route::get('store/item/{id}', 'HomeController@itemDetail')->name('user.itemDetail');

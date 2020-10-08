@@ -59,9 +59,13 @@ class PemilikController extends Controller
     }
 
     public function orders(){
-        $orders = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
+        $unprocess  = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
                     ->where('status', 1)
                     ->get();
+        $process    = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
+                    ->where('status', 2)
+                    ->get();
+        $orders     = $unprocess->merge($process);
         return view('owner.orders', compact('orders'));
     }
 
@@ -72,16 +76,33 @@ class PemilikController extends Controller
 
     public function orderProcess(Request $request, $id){
         $order = Transaksi::findOrFail($id);
+        // dd($request->all());
         if(isset($request->proses)){
             $order->update([
                 'status' => 2
             ]);
             return back()->with('success','Order are going to be processed!');
+        }elseif(isset($request->done)){
+            $order->update([
+                'status' => 3
+                ]);
+            return back()->with('success','Order Done!');
         }elseif(isset($request->refuse)){
             $order->update([
                 'status' => 4
                 ]);
             return back()->with('danger','Order Refused!');
         }
+    }
+
+    public function history(){
+        $refused    = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
+                    ->where('status', 4)
+                    ->get();
+        $done       = Transaksi::where('pemilik_id', auth()->guard('owner')->user()->id)
+                    ->where('status', 3)
+                    ->get();
+        $data       = $refused->merge($done);
+        return view('owner.history', compact('data'));
     }
 }

@@ -14,11 +14,18 @@
                 <div class="card card-solid">
                     <div class="card-body">
                         <div class="form-group">
+                            @if($order->status == 1)
                             <form action="{{ route('owner.orderProcess', $order->id )}}" method="post">
                                 @csrf
-                                <button type="submit" name="proses" class="float-right btn btn-primary" onclick="return confirm('Are you sure?')">Process</button>
-                                <button type="submit" name="refuse" class="float-right btn btn-danger mr-2" onclick="return confirm('Are you sure?')">Refuse</button>
+                                <button type="submit" name="proses" value="0" class="float-right btn btn-primary" onclick="return confirm('Are you sure?')">Process</button>
+                                <button type="submit" name="refuse" value="0s" class="float-right btn btn-danger mr-2" onclick="return confirm('Are you sure?')">Refuse</button>
                             </form>
+                            @elseif($order->status == 2)
+                            <form action="{{ route('owner.orderProcess', $order->id )}}" method="post">
+                                @csrf
+                                <button type="submit" name="done" value="0" class="float-right btn btn-success" onclick="return confirm('Are you sure?')">Done</button>
+                            </form>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="">Customer Name : </label>
