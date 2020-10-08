@@ -46,7 +46,7 @@
                                         @if(auth()->guard('web')->user())
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                                         @else
-                                        <a href="{{ route('auth.login') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                                        <a href="{{ route('auth.getLogin') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                                         @endif
                                     </div>
                                     @endif
