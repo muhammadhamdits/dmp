@@ -17,6 +17,10 @@ Route::get('login', 'AuthController@getLogin')->name('auth.getLogin');
 Route::post('login', 'AuthController@postLogin')->name('auth.postLogin');
 Route::get('logout', 'AuthController@logout')->name('auth.logout');
 
+Route::get('profile', 'AuthController@profile')->name('auth.profile');
+Route::get('profile/edit', 'AuthController@editProfile')->name('auth.editProfile');
+Route::post('profile/edit', 'AuthController@updateProfile')->name('auth.updateProfile');
+
 Route::get('register/owner', 'AuthController@getOwnerRegister')->name('auth.getOwnerRegister');
 Route::post('register/owner', 'AuthController@postOwnerRegister')->name('auth.postOwnerRegister');
 Route::get('register/user', 'AuthController@getUserRegister')->name('auth.getUserRegister');

@@ -35,7 +35,7 @@
                         {{ auth()->guard('owner')->user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu dropdown-menu-right">
-                        <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                        <a href="{{ route('auth.profile') }}" class="dropdown-item">
                             <i class="fas fa-user mr-2"></i> 
                             Profile
                         </a>

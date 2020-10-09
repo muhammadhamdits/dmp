@@ -86,10 +86,10 @@ class AuthController extends Controller
         $file2 = $request->file('ktp');
         $nama_file = time()."_".$file->getClientOriginalName();
         $nama_file2 = time()."_".$file2->getClientOriginalName();
-        $tujuan_upload = 'public/img/shop';
-        $tujuan_upload2 = 'public/img/ktp';
-		$file->move($tujuan_upload,$nama_file);
-		$file2->move($tujuan_upload2,$nama_file2);
+        $tujuan_upload = 'img/shop';
+        $tujuan_upload2 = 'img/ktp';
+		$file->move(public_path($tujuan_upload),$nama_file);
+		$file2->move(public_path($tujuan_upload2),$nama_file2);
 
         Pemilik::create([
             'name'          => $request->name,
@@ -131,5 +131,49 @@ class AuthController extends Controller
             'password'      => bcrypt($request->password)
         ]);
         return back()->with('success','Registered successfully!');
+    }
+
+    public function profile(){
+        if(auth()->guard('owner')->user()){
+            return view('owner.profile');
+        }
+    }
+
+    public function editProfile(){
+        return view('owner.editProfile');
+    }
+
+    public function updateProfile(Request $request){
+        $this->validate($request, [
+            'name'          => 'required',
+            'shop_name'     => 'required',
+            'shop_address'  => 'required',
+            'owner_address' => 'required',
+            'email'         => 'required',
+            'phone_number'  => 'required',
+        ]);
+
+        if($request->file('pict_1')){
+            $file = $request->file('pict_1');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'public/img/shop';
+            $file->move(public_path($tujuan_upload),$nama_file);
+        }else{
+            $nama_file = auth()->guard('owner')->user()->pict_1;
+        }
+
+        $user = Pemilik::findOrFail(auth()->guard('owner')->user()->id);
+        $user->update([
+            'name'          => $request->name,
+            'shop_name'     => $request->shop_name,
+            'shop_address'  => $request->shop_address,
+            'owner_address' => $request->owner_address,
+            'email'         => $request->email,
+            'phone_number'  => $request->phone_number,
+            'other_info'    => $request->other_info,
+            'pict_1'        => $nama_file,
+        ]);
+
+        return redirect(route('auth.profile'))->with('success','Updated successfully!');
     }
 }
