@@ -86,8 +86,8 @@ class AuthController extends Controller
         $file2 = $request->file('ktp');
         $nama_file = time()."_".$file->getClientOriginalName();
         $nama_file2 = time()."_".$file2->getClientOriginalName();
-        $tujuan_upload = 'img/shop';
-        $tujuan_upload2 = 'img/ktp';
+        $tujuan_upload = 'public/img/shop';
+        $tujuan_upload2 = 'public/img/ktp';
 		$file->move($tujuan_upload,$nama_file);
 		$file2->move($tujuan_upload2,$nama_file2);
 
