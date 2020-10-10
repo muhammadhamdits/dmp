@@ -62,7 +62,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('owner.index') }}" class="nav-link active">
+                            <a href="{{ route('owner.index') }}" class="nav-link @if(Request::segment(1) == 'owner' && !Request::segment(2)) active @endif">
                                 <i class="nav-icon fas fa-sitemap"></i>
                                 <p>
                                     Items
@@ -71,7 +71,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('owner.orders') }}" class="nav-link">
+                            <a href="{{ route('owner.orders') }}" class="nav-link @if(Request::segment(1) == 'owner' && Request::segment(2) == 'orders') active @endif">
                                 <i class="nav-icon fas fa-clipboard"></i>
                                 <p>
                                     Orders
@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('owner.history') }}" class="nav-link">
+                            <a href="{{ route('owner.history') }}" class="nav-link @if(Request::segment(1) == 'owner' && Request::segment(2) == 'history') active @endif">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Transaction History

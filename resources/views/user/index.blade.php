@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @if($populars->count() > 0)
         <!-- Popular -->
         <section class="content-header">
             <div class="container-fluid">
@@ -43,7 +44,9 @@
                 </div>
             </div>
         </section>
+        @endif
 
+        @if($news->count() > 0)
         <!-- New -->
         <section class="content-header">
             <div class="container-fluid">
@@ -85,6 +88,7 @@
                 </div>
             </div>
         </section>
+        @endif
 
         <!-- Store -->
         <section class="content-header">

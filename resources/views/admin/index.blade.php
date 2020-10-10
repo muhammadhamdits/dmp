@@ -42,7 +42,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <!-- <div class="card-footer">
                         <nav aria-label="Store List Page Navigation">
                             <ul class="pagination justify-content-center m-0">
                                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -51,7 +51,7 @@
                                 <li class="page-item"><a class="page-link" href="#">4</a></li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

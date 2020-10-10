@@ -67,7 +67,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('admin.index') }}" class="nav-link active">
+                            <a href="{{ route('admin.index') }}" class="nav-link @if(!Request::segment(2)) active @endif">
                                 <i class="nav-icon fas fa-plus"></i>
                                 <p>
                                     Registered Store
@@ -76,7 +76,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.acc') }}" class="nav-link">
+                            <a href="{{ route('admin.acc') }}" class="nav-link @if(Request::segment(2) == 'accepted') active @endif">
                                 <i class="nav-icon fas fa-check"></i>
                                 <p>
                                     Accepted Store
@@ -85,7 +85,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.rej') }}" class="nav-link">
+                            <a href="{{ route('admin.rej') }}" class="nav-link @if(Request::segment(2) == 'rejected') active @endif">
                                 <i class="nav-icon fas fa-times"></i>
                                 <p>
                                     Rejected Store
