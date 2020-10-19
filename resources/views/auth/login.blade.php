@@ -2,13 +2,18 @@
 
 @section('content')
 <div class="card-body login-card-body">
-    
+    <div class="row">
+        <div class="col-12">
+        @include('flash-message')
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             
         </div>
         <div class="col-md-6">
             <p class="login-box-msg">Sign in to start your session</p>
+            
             <form action="{{ route('auth.getLogin') }}" method="post">
                 @csrf
                 <div class="form-group mb-3">
@@ -26,6 +31,9 @@
         
             <p class="mb-1 float-right">
                 <a href="forgot-password.html">I forgot my password</a>
+            </p>
+            <p class="mb-1 float-left">
+                <a href="{{ route('auth.getUserRegister') }}">Register Now!</a>
             </p>
         </div>
     </div>

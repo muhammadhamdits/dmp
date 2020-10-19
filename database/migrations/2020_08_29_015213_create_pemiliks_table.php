@@ -21,6 +21,7 @@ class CreatePemiliksTable extends Migration
             $table->string('owner_address');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
+            $table->string('rekening')->nullable();
             $table->string('other_info')->nullable();
             $table->string('pict_1');
             $table->string('ktp');

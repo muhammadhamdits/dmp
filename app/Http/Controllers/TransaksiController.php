@@ -54,14 +54,24 @@ class TransaksiController extends Controller
             $transaksi = Transaksi::create([
                 'user_id'       => auth()->guard('web')->user()->id,
                 'pemilik_id'    => $item->store->id,
+                'payment'       => 0,
                 'status'        => 0
             ]);
         }
-        TransaksiBarang::create([
-            'transaksi_id'  => $transaksi->id,
-            'barang_id'     => $request->item_id,
-            'jumlah'        => $request->jumlah
-        ]);
+        if($transaksi->detail->contains('barang_id', $request->item_id)){
+            $detail = TransaksiBarang::where('transaksi_id', $transaksi->id)
+                            ->where('barang_id', $request->item_id)
+                            ->first();
+            $detail->update(['jumlah' => $detail->jumlah + $request->jumlah]);
+
+        } else{
+            TransaksiBarang::create([
+                'transaksi_id'  => $transaksi->id,
+                'barang_id'     => $request->item_id,
+                'jumlah'        => $request->jumlah
+            ]);
+        }
+            
         return back()->with('success','Item added to card!');;
     }
 
@@ -73,12 +83,31 @@ class TransaksiController extends Controller
         return view('user.cart', compact('carts'));
     }
 
-    public function checkout($id){
+    public function checkout(Request $request, $id){
         $cart = Transaksi::findOrFail($id);
         $cart->update([
+            'payment' => $request->payment,
             'tanggal'=> date('Y-m-d H:i:s'),
             'status' => 1
         ]);
-        return back()->with('success', 'Your order has been sent to seller!');
+        if($request->payment == 0){
+            $message = 'Your order has been sent to seller!';
+        }else{
+            $message = 'Your order has been sent to seller! Pay to this Rekening'.$cart->shop->rekening;
+        }
+        return back()->with('success', $message);
+    }
+
+    public function history(){
+        $transaksis = Transaksi::where('user_id', auth()->guard('web')->user()->id)
+                                ->where('status', '!=', 0)
+                                ->get();
+        // dd($transaksis);
+        return view('user.history', compact('transaksis'));
+    }
+
+    public function detailHistory($id){
+        $transaksi = Transaksi::findOrFail($id);
+        return view('user.detail', compact('transaksi'));
     }
 }

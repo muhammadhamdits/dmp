@@ -47,7 +47,7 @@
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     @if(auth()->guard('web')->user())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.getLogin') }}">
+                        <a class="nav-link" href="{{ route('cart.history') }}">
                             <i class="fas fa-history"></i>
                         </a>
                     </li>
@@ -62,7 +62,7 @@
                             {{ auth()->guard('web')->user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu dropdown-menu-right">
-                            <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                            <a href="{{ route('auth.profile') }}" class="dropdown-item">
                                 <i class="fas fa-user mr-2"></i> 
                                 Profile
                             </a>
@@ -139,7 +139,11 @@
             <div class="float-right d-none d-sm-inline">
                 Anything you want
             </div>
-            <strong>Copyright &copy; 2020 <a href="">LEA SI UNAND</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020 <a href="">Riset Dasar LPPM Unand</a>.</strong> All rights reserved.
         </footer>
     </div>
+@endsection
+
+@section('foot')
+    @yield('js')
 @endsection

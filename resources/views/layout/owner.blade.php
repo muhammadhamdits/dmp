@@ -102,7 +102,7 @@
             <div class="float-right d-none d-sm-inline">
                 Anything you want
             </div>
-            <strong>Copyright &copy; 2020 <a href="">Hamdio</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020 <a href="">Riset Dasar LPPM Unand</a>.</strong> All rights reserved.
         </footer>
     </div>
     @yield('modal')

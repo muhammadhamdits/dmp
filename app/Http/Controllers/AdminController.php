@@ -57,7 +57,7 @@ class AdminController extends Controller
         $store  = Pemilik::findOrFail($id);
         $status = $request->status;
         $store->update(['status' => $status]);
-        return redirect(route('admin.index'));
+        return redirect(route('admin.index'))->with('success', 'Store confimed!');
     }
 
     public function accepted(){

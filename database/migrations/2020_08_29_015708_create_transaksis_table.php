@@ -19,6 +19,7 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('pemilik_id')->constrained();
             $table->integer('status'); //0 = Cart; 1 = Proses; 2 = Acc; 3 = Ditolak
+            $table->integer('payment'); //0 = COD; 1 = Transfer Bank
             $table->timestamps();
         });
     }

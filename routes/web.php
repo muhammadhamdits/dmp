@@ -43,6 +43,8 @@ Route::get('store/item/{id}', 'HomeController@itemDetail')->name('user.itemDetai
 Route::get('cart', 'TransaksiController@cartDetail')->name('cart.detail');
 Route::post('cart', 'TransaksiController@cartAdd')->name('cart.add');
 Route::post('checkout/{id}', 'TransaksiController@checkout')->name('cart.checkout');
+Route::get('history', 'TransaksiController@history')->name('cart.history');
+Route::get('history/{id}', 'TransaksiController@detailHistory')->name('cart.detailHistory');
 
 Route::resource('user', 'UserController');
 Route::resource('admin', 'AdminController');

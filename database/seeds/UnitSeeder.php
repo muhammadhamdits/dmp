@@ -11,14 +11,11 @@ class UnitSeeder extends Seeder
      */
     public function run()
     {
-        App\Unit::create([
-            'name' => 'Kg'
-        ]);
-        App\Unit::create([
-            'name' => 'L'
-        ]);
-        App\Unit::create([
-            'name' => 'Lusin'
-        ]);
+        App\Unit::create(['name' => 'Ons']);
+        App\Unit::create(['name' => 'Kg']);
+        App\Unit::create(['name' => 'Pcs']);
+        App\Unit::create(['name' => 'Liter']);
+        App\Unit::create(['name' => 'Pak']);
+        App\Unit::create(['name' => 'Kardus']);
     }
 }

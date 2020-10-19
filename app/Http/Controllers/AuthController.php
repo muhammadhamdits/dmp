@@ -37,13 +37,15 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $this->clearLoginAttempts($request);
             return redirect(route('admin.index'));
-        } else if (auth()->guard('owner')->attempt($request->only('username', 'password'))) {
+        } else if (auth()->guard('owner')->attempt(['username' => $request->username, 'password' => $request->password, 'status' => 1])) {
             $request->session()->regenerate();
             $this->clearLoginAttempts($request);
             return redirect(route('owner.index'));
         } else {
             $this->incrementLoginAttempts($request);
-
+            if(!auth()->guard('owner')->attempt(['username' => $request->username, 'password' => $request->password, 'status' => 1])){
+                return redirect(route('auth.getLogin'))->with('error', 'Account is not activated!');
+            }
             return redirect()
                 ->back()
                 ->withInput()
@@ -98,6 +100,7 @@ class AuthController extends Controller
             'owner_address' => $request->owner_address,
             'email'         => $request->email,
             'phone_number'  => $request->phone_number,
+            'rekening'      => $request->rekening,
             'other_info'    => $request->other_info,
             'pict_1'        => $nama_file,
             'ktp'           => $nama_file2,
@@ -106,7 +109,7 @@ class AuthController extends Controller
             'status'        => 0
         ]);
 
-        return back()->with('success','Registered successfully!');
+        return redirect(route('auth.getLogin'))->with('success','Registered successfully! Wait for your account to be activated!');
     }
     
     public function getUserRegister(){
@@ -130,50 +133,73 @@ class AuthController extends Controller
             'username'      => $request->username,
             'password'      => bcrypt($request->password)
         ]);
-        return back()->with('success','Registered successfully!');
+        return redirect(route('auth.getLogin'))->with('success','Registered successfully!');
     }
 
     public function profile(){
         if(auth()->guard('owner')->user()){
             return view('owner.profile');
+        }else{
+            return view('user.profile');
         }
     }
 
     public function editProfile(){
-        return view('owner.editProfile');
+        if(auth()->guard('owner')->user()){
+            return view('owner.editProfile');
+        }else{
+            return view('user.editProfile');
+        }
     }
 
     public function updateProfile(Request $request){
-        $this->validate($request, [
-            'name'          => 'required',
-            'shop_name'     => 'required',
-            'shop_address'  => 'required',
-            'owner_address' => 'required',
-            'email'         => 'required',
-            'phone_number'  => 'required',
-        ]);
-
-        if($request->file('pict_1')){
-            $file = $request->file('pict_1');
-            $nama_file = time()."_".$file->getClientOriginalName();
-            $tujuan_upload = 'public/img/shop';
-            $file->move(public_path($tujuan_upload),$nama_file);
+        if(auth()->guard('owner')->user()){
+            $this->validate($request, [
+                'name'          => 'required',
+                'shop_name'     => 'required',
+                'shop_address'  => 'required',
+                'owner_address' => 'required',
+                'email'         => 'required',
+                'phone_number'  => 'required',
+            ]);
+    
+            if($request->file('pict_1')){
+                $file = $request->file('pict_1');
+                $nama_file = time()."_".$file->getClientOriginalName();
+                $tujuan_upload = 'public/img/shop';
+                $file->move(public_path($tujuan_upload),$nama_file);
+            }else{
+                $nama_file = auth()->guard('owner')->user()->pict_1;
+            }
+    
+            $user = Pemilik::findOrFail(auth()->guard('owner')->user()->id);
+            $user->update([
+                'name'          => $request->name,
+                'shop_name'     => $request->shop_name,
+                'shop_address'  => $request->shop_address,
+                'owner_address' => $request->owner_address,
+                'email'         => $request->email,
+                'phone_number'  => $request->phone_number,
+                'other_info'    => $request->other_info,
+                'pict_1'        => $nama_file,
+            ]);
         }else{
-            $nama_file = auth()->guard('owner')->user()->pict_1;
+            $this->validate($request, [
+                'name'          => 'required',
+                'email'         => 'required',
+                'phone_number'  => 'required',
+                'address'       => 'required'
+            ]);
+
+            User::findOrFail(auth()->guard('web')->user()->id)
+                ->update([
+                    'name'          => $request->name,
+                    'email'         => $request->email,
+                    'phone_number'  => $request->phone_number,
+                    'address'       => $request->address,
+                ]);
         }
-
-        $user = Pemilik::findOrFail(auth()->guard('owner')->user()->id);
-        $user->update([
-            'name'          => $request->name,
-            'shop_name'     => $request->shop_name,
-            'shop_address'  => $request->shop_address,
-            'owner_address' => $request->owner_address,
-            'email'         => $request->email,
-            'phone_number'  => $request->phone_number,
-            'other_info'    => $request->other_info,
-            'pict_1'        => $nama_file,
-        ]);
-
+    
         return redirect(route('auth.profile'))->with('success','Updated successfully!');
     }
 }

@@ -16,6 +16,7 @@
 @section('content')
     <div class="container">
         <section class="content-header">
+            @include('flash-message')
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -35,7 +36,7 @@
                                 <div class="card" style="width: 100%">
                                     <div class="gambar" style="background-image: url('/img/shop/{{ $store->pict_1 }}')"></div>
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
-                                        <a href="{{ route('admin.storeDetail', $store->id) }}"><b>{{ $store->name }}</b></a>
+                                        <a href="{{ route('admin.storeDetail', $store->id) }}"><b>{{ $store->shop_name }}</b></a>
                                     </div>
                                 </div>
                             </div>
