@@ -1,26 +1,27 @@
 @extends('layout.app')
 
 @section('head')
-<style>
-    .gambar{
-        width: 100%;
-        /* height: 100px; */
-        padding-top: 100%;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    body, .content-wrapper{ 
-        background-image: url('https://images.fineartamerica.com/images-medium-large-5/tropical-background-modern-floral-olga-beliaeva.jpg');
-        background-size: cover;
-    }
-    .main-footer, .navbar{
-        background-color: rgba(255,255,255,0.75) !important
-    }
-    .card{
-        background-color: rgba(255,255,255,0.95);
-    }
-</style>
+    <style>
+        .gambar{
+            width: 100%;
+            /* height: 100px; */
+            padding-top: 100%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        body, .content-wrapper{ 
+            background-image: url('https://images.fineartamerica.com/images-medium-large-5/tropical-background-modern-floral-olga-beliaeva.jpg');
+            background-size: cover;
+        }
+        .main-footer, .navbar{
+            background-color: rgba(255,255,255,0.75) !important
+        }
+        .card{
+            background-color: rgba(255,255,255,0.95);
+        }
+    </style>
+    @yield('css')
 @endsection
 
 @section('body')
