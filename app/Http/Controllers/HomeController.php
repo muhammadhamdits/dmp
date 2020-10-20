@@ -26,10 +26,10 @@ class HomeController extends Controller
             $populars   = TransaksiBarang::select(DB::raw("barang_id, COUNT('barang_id') AS hitung"))
                             ->groupBy('barang_id')
                             ->orderBy('hitung', 'DESC')
-                            ->take(4)
+                            ->take(9)
                             ->get();
             $news       = Barang::orderBy('created_at', 'ASC')
-                            ->take(4)
+                            ->take(9)
                             ->get();
             return view('user.index', compact('stores', 'populars', 'news'));
         // }

@@ -2,11 +2,40 @@
 
 @section('css')
     <style>
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
 
-        .carousel-inner .carousel-item-right,
-        .carousel-inner .carousel-item-left{ 
-        transform: translateX(0);
-        }
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+    
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(33.333%);
+    }
+    
+    .carousel-inner .carousel-item-left.active, 
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.333%);
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
 
     </style>
 @endsection
@@ -29,12 +58,12 @@
             <div class="container">
                 <div class="card card-solid">
                     <div class="card-body pb-0">
-                        <div class="row mx-auto my-auto d-flex align-items-stretch">
-                            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="row mx-auto my-auto">
+                            <div id="popCar" class="carousel slide w-100" data-ride="carousel">
                                 <div class="carousel-inner w-100" role="listbox">
                                     @foreach($populars as $store)
-                                    <div class="carousel-item active">
-                                        <div class="col-md-2 d-flex align-items-stretch">
+                                    <div class="carousel-item @if($loop->iteration == 1) active @endif">
+                                        <div class="col-md-2 ml-4">
                                             <div class="card" style="width: 100%">
                                                 <div class="gambar" style="background-image: url('/img/item/{{ $store->barang->foto }}')"></div>
                                                 <div class="card-footer" style="background-color: rgba(255,255,255,0)">
@@ -45,11 +74,11 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                                <a class="carousel-control-prev w-auto" href="#popCar" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                                <a class="carousel-control-next w-auto" href="#popCar" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -77,12 +106,12 @@
             <div class="container">
                 <div class="card card-solid">
                     <div class="card-body pb-0">
-                        <div class="row mx-auto my-auto d-flex align-items-stretch">
-                            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="row mx-auto my-auto">
+                            <div id="newCar" class="carousel slide w-100" data-ride="carousel">
                                 <div class="carousel-inner w-100" role="listbox">
                                     @foreach($news as $store)
-                                    <div class="carousel-item active">
-                                        <div class="col-md-2 d-flex align-items-stretch">
+                                    <div class="carousel-item @if($loop->iteration == 1) active @endif">
+                                        <div class="col-md-2 ml-4">
                                             <div class="card" style="width: 100%">
                                                 <div class="gambar" style="background-image: url('/img/item/{{ $store->foto }}')"></div>
                                                 <div class="card-footer" style="background-color: rgba(255,255,255,0)">
@@ -93,11 +122,11 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                                <a class="carousel-control-prev w-auto" href="#newCar" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                                <a class="carousel-control-next w-auto" href="#newCar" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -124,12 +153,12 @@
             <div class="container">
                 <div class="card card-solid">
                     <div class="card-body pb-0">
-                        <div class="row mx-auto my-auto d-flex align-items-stretch">
-                            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="row mx-auto my-auto">
+                            <div id="stoCar" class="carousel slide w-100" data-ride="carousel">
                                 <div class="carousel-inner w-100" role="listbox">
                                     @foreach($stores as $store)
-                                    <div class="carousel-item active">
-                                        <div class="col-md-2 d-flex align-items-stretch">
+                                    <div class="carousel-item @if($loop->iteration == 1) active @endif">
+                                        <div class="col-md-2 ml-4">
                                             <div class="card" style="width: 100%">
                                                 <div class="gambar" style="background-image: url('/img/shop/{{ $store->pict_1 }}')"></div>
                                                 <div class="card-footer" style="background-color: rgba(255,255,255,0)">
@@ -142,11 +171,11 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                                <a class="carousel-control-prev w-auto" href="#stoCar" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                                <a class="carousel-control-next w-auto" href="#stoCar" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -161,9 +190,17 @@
 
 @section('js')
 <script>
-    $('#recipeCarousel').carousel({
+    $('#popCar').carousel({
         interval: 10000
-    })
+    });
+
+    $('#newCar').carousel({
+        interval: 10000
+    });
+
+    $('#stoCar').carousel({
+        interval: 10000
+    });
 
     $('.carousel .carousel-item').each(function(){
         var minPerSlide = 3;
