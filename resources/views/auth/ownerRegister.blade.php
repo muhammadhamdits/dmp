@@ -1,7 +1,7 @@
 @extends('layout.auth')
 
 @section('content')
-<div class="card-header text-center">
+<div class="card-header text-center bg-primary">
     <b>Register as Shop Owner</b>
 </div>
 <div class="card-body">

@@ -1,7 +1,7 @@
 @extends('layout.auth')
 
 @section('content')
-<div class="card-header text-center">
+<div class="card-header text-center bg-primary">
     <b>Register</b>
 </div>
 <div class="card-body">
@@ -30,7 +30,7 @@
                 <div class="form-group row">
                     <label for="address" class="col-sm-3 col-form-label">Address</label>
                     <div class="col-sm-9">
-                        <textarea name="address" id="address" rows="2" class="form-control" placeholder="Address" required></textarea>
+                        <textarea name="address" id="address" rows="2" class="form-control" placeholder="Address (Fill complete, used for sending item)" required></textarea>
                     </div>
                 </div>
                 <div class="form-group row">

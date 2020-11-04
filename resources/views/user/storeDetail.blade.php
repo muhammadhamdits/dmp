@@ -26,7 +26,7 @@
                                     <div class="card-footer" style="background-color: rgba(255,255,255,0)">
                                         <a href="{{ route('user.itemDetail', $item->id) }}">{{ $item->nama }}</a>
                                         <br>
-                                        <b>Rp {{ $item->harga }}</b>
+                                        <b>Rp {{ $item->harga }} (per {{ $item->unit->name }})</b>
                                     </div>
                                 </div>
                             </div>

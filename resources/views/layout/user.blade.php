@@ -11,14 +11,32 @@
             background-size: cover;
         }
         body, .content-wrapper{ 
-            background-image: url('https://images.fineartamerica.com/images-medium-large-5/tropical-background-modern-floral-olga-beliaeva.jpg');
-            background-size: cover;
+
+            /* background-image: url('https://images.fineartamerica.com/images-medium-large-5/tropical-background-modern-floral-olga-beliaeva.jpg');
+            background-size: cover; */
         }
+
         .main-footer, .navbar{
-            background-color: rgba(255,255,255,0.75) !important
+            /* background-color: rgba(255,255,255,0.75) !important */
+            background-color: #3492eb !important;
+            color: white !important;
         }
+
+        .main-footer a, .navbar a{
+            /* background-color: rgba(255,255,255,0.75) !important */
+            background-color: #3492eb !important;
+            color: white !important;
+        }
+
+        .navbar .nav-item .dropdown-menu a{
+            /* background-color: rgba(255,255,255,0.75) !important */
+            /* background-color: #3492eb !important; */
+            background-color: transparent !important;
+            color: black !important;
+        }
+
         .card{
-            background-color: rgba(255,255,255,0.95);
+            /* background-color: rgba(255,255,255,0.95); */
         }
     </style>
     @yield('css')

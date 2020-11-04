@@ -9,7 +9,9 @@
                         <div class="card" style="width: 100%">
                             <div class="gambar" style="background-image: url('/img/shop/{{ $item->store->pict_1 }}')"></div>
                         </div>
-                        {{ $item->store->name }}
+                        <h4 class="text-primary"><b>{{ $item->store->shop_name }}</b></h4>
+                        <h5>{{ $item->store->shop_address }}</h5>
+                        <h6>{{ $item->store->other_info }}</h6>
                     </div>
                 </div>
             </div>
@@ -31,7 +33,7 @@
                                         <h3>{{ $item->nama }}</h3>
                                     </div>
                                     <div class="form-group">
-                                        <h4>Rp {{ $item->harga }}</h4>
+                                        <h4 class="text-primary"> <b>Rp {{ $item->harga }}</b> </h4>
                                     </div>
                                     @if(!auth()->guard('admin')->user() && !auth()->guard('owner')->user())
                                     <div class="form-group row">
