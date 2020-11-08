@@ -9,7 +9,11 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            
+            <!-- <div class="card"> -->
+                <!-- <div class="card-body"> -->
+                    <div class="gambar" style="background-image: url('/img/logo.jpeg')"></div>
+                <!-- </div> -->
+            <!-- </div> -->
         </div>
         <div class="col-md-6">
             <p class="login-box-msg">Sign in to start your session</p>
