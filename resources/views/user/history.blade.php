@@ -44,6 +44,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('cart.detailHistory', $transaksi->id) }}" class="btn btn-sm btn-primary">Detail</a>
+                                        <a href="{{ route('cart.facture', $transaksi->id) }}" target="_blank" class="btn btn-sm btn-warning">Invoice</a>
                                     </td>
                                 </tr>
                                 @endforeach

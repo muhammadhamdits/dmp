@@ -110,4 +110,10 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         return view('user.detail', compact('transaksi'));
     }
+
+    public function faktur($id){
+        $transaksi = Transaksi::findOrFail($id);
+        // dd($transaksi);
+        return view('user.faktur', compact('transaksi'));
+    }
 }

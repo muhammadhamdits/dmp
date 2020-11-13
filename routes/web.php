@@ -45,6 +45,7 @@ Route::post('cart', 'TransaksiController@cartAdd')->name('cart.add');
 Route::post('checkout/{id}', 'TransaksiController@checkout')->name('cart.checkout');
 Route::get('history', 'TransaksiController@history')->name('cart.history');
 Route::get('history/{id}', 'TransaksiController@detailHistory')->name('cart.detailHistory');
+Route::get('faktur/{id}', 'TransaksiController@faktur')->name('cart.facture');
 
 Route::resource('user', 'UserController');
 Route::resource('admin', 'AdminController');
